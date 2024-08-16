@@ -13,9 +13,9 @@ Feature: user should be able to use tags
     Then verify status code is 200
     Examples:
       | name_tag | description           |
-      | Nurgazw  | apple tag             |
-      | Gazw     | short tag description |
-      | Azw      |                       |
+      | Nurgazwq | apple tag             |
+      | Gazwwe   | short tag description |
+      | Azwe     |                       |
 
 
   Scenario Outline: verify tag cannot be created without required field name_tag
@@ -34,3 +34,16 @@ Feature: user should be able to use tags
 #      |bena2   | wrong name_tag, please make sure no digits and special chars are used |
 #      |extra long name tag | wrong name_tag, size limit is 25 chars|
 #      |name with spaces| wrong name_tag, no spaces allowed |
+
+
+  @workWithClient
+    Scenario: verify user can create a client
+    Given base url "https://backend.cashwise.us/"
+    When I provide valid authorization token
+    And I provide company name "API Company"
+    And I provide client name "APIBEK"
+    And I provide email "Api@gmail.com"
+    And I provide phone number "3124385566"
+    And I provide address "5455 N East River Road"
+    And I retrieve id "id"
+    Then verify status code is 201

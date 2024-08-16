@@ -9,6 +9,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
 import org.junit.Assert;
+import utilities.Config;
 
 public class TagSteps {
 
@@ -25,11 +26,10 @@ public class TagSteps {
                 .accept(ContentType.JSON)
                 .baseUri(url);
 
-
     }
     @When("I provide valid authorization token")
     public void i_provide_valid_authorization_token() {
-        request = request.auth().oauth2("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJleHAiOjE3MjU4Mzg2OTMsImlhdCI6MTcyMzI0NjY5MywidXNlcm5hbWUiOiJhbWFuYmFldjYyQGdtYWlsLmNvbSJ9.ZU6VmnDsnlb-c7YdswWy4gOzrtKgbvfqVW201K0De_3iOHwpv6_sxthC91zHWAx0Ko05A4ZtVrSYyM03nEAK7w");
+        request = request.auth().oauth2(Config.getProperty("cashwiseToken"));
 
     }
     @When("I provide {string} with {string}")
@@ -66,8 +66,17 @@ public class TagSteps {
        response =  request.delete(endpoint + id);
         System.out.println(response.prettyPrint());
 
-
     }
+
+
+
+
+
+
+
+
+
+
 
 
 
